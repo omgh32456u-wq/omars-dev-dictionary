@@ -1,0 +1,255 @@
+/* Omar's Dev Dictionary — global styles.
+   Design tokens: restrained accent, clear surfaces, RTL-aware logical properties. */
+
+:root {
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --text: #0f172a;
+  --text-soft: #475569;
+  --border: #e2e8f0;
+  --ok: #16a34a;
+  --warn: #d97706;
+  --danger: #dc2626;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgb(15 23 42 / 0.08), 0 1px 2px rgb(15 23 42 / 0.04);
+}
+
+.dark {
+  --accent: #60a5fa;
+  --accent-soft: #1e3a8a;
+  --bg: #0b1120;
+  --surface: #111a2e;
+  --surface-2: #0f172a;
+  --text: #e2e8f0;
+  --text-soft: #94a3b8;
+  --border: #1e293b;
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.4);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, 'Noto Sans', 'Noto Sans Arabic', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* --- Nav --- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-block-end: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 700; }
+.brand-mark {
+  display: inline-grid; place-items: center;
+  inline-size: 2rem; block-size: 2rem;
+  background: var(--accent); color: white;
+  border-radius: 8px; font-size: 0.8rem; letter-spacing: 0.02em;
+}
+.brand-name { font-size: 0.95rem; }
+
+.nav-links { display: flex; flex-wrap: wrap; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+  display: block; padding: 0.4rem 0.7rem; border-radius: 8px;
+  color: var(--text-soft); text-decoration: none; font-size: 0.9rem;
+}
+.nav-links a:hover { background: var(--surface-2); color: var(--text); }
+.nav-links a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+/* --- Layout --- */
+.content { flex: 1; inline-size: 100%; max-inline-size: 64rem; margin-inline: auto; padding: 1.5rem 1rem 3rem; }
+.footer {
+  padding: 1rem; text-align: center; font-size: 0.8rem; color: var(--text-soft);
+  border-block-start: 1px solid var(--border); background: var(--surface);
+}
+
+h1 { font-size: 1.6rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.2rem; margin: 1.5rem 0 0.5rem; }
+h3 { font-size: 1rem; margin: 1rem 0 0.25rem; }
+
+.page-title { display: flex; flex-direction: column; gap: 0.25rem; margin-block-end: 1.25rem; }
+.subtitle { color: var(--text-soft); margin: 0; }
+
+/* --- Cards & lists --- */
+.grid { display: grid; gap: 0.75rem; }
+.grid.cols-2 { grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.term-row {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0.85rem 1rem;
+  text-decoration: none; color: var(--text);
+}
+.term-row:hover { border-color: var(--accent); }
+.term-row .name { font-weight: 600; font-size: 1rem; }
+.term-row .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.78rem; color: var(--text-soft); }
+
+.badge {
+  display: inline-block; padding: 0.1rem 0.5rem;
+  border-radius: 999px; font-size: 0.72rem; font-weight: 600;
+  background: var(--surface-2); color: var(--text-soft);
+  border: 1px solid var(--border);
+}
+.badge-beginner { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+.badge-intermediate { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+.badge-advanced { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.dark .badge-beginner { background: #14532d; color: #bbf7d0; border-color: #166534; }
+.dark .badge-intermediate { background: #78350f; color: #fde68a; border-color: #92400e; }
+.dark .badge-advanced { background: #7f1d1d; color: #fecaca; border-color: #991b1b; }
+
+/* --- Controls --- */
+input[type='text'], input[type='search'], select {
+  inline-size: 100%; padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text);
+  font: inherit;
+}
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+button, .btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.9rem; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface); color: var(--text);
+  font: inherit; font-size: 0.9rem; cursor: pointer; text-decoration: none;
+}
+button:hover, .btn:hover { background: var(--surface-2); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.primary:hover { filter: brightness(1.08); }
+button.ghost { border-color: transparent; background: transparent; }
+button.small { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+
+/* --- Filters bar --- */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: end; margin-block-end: 1rem; }
+.filters label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.8rem; color: var(--text-soft); }
+.filters select { min-inline-size: 9rem; }
+
+/* --- Empty states --- */
+.empty {
+  text-align: center; padding: 2.5rem 1rem;
+  background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius);
+  color: var(--text-soft);
+}
+.empty h3 { margin: 0 0 0.25rem; color: var(--text); }
+
+/* --- Term page --- */
+.term-header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-block-end: 1rem; }
+.term-header h1 { margin: 0; }
+.term-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-inline-start: auto; }
+
+.section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-block-end: 0.75rem; }
+.section > h2 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.section-head { display: flex; align-items: center; gap: 0.5rem; }
+.section-head h2 { margin: 0; }
+.section-head .audio-controls { margin-inline-start: auto; display: flex; gap: 0.35rem; }
+
+.fallback-note { font-size: 0.75rem; color: var(--text-soft); margin-block-start: 0.4rem; }
+
+/* --- Code --- */
+pre.code {
+  margin: 0.5rem 0 0; padding: 0.85rem 1rem;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 8px; overflow-x: auto;
+  direction: ltr; text-align: start;
+  font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  font-size: 0.85rem; line-height: 1.55;
+}
+pre.code code { font-family: inherit; }
+.code-lang { font-size: 0.7rem; color: var(--text-soft); margin-block-start: 0.25rem; }
+.copy-row { display: flex; justify-content: flex-end; }
+
+/* Latin text runs are forced LTR inside RTL pages. */
+.ltr, .ltr * { direction: ltr; unicode-bidi: embed; }
+
+/* --- Diagrams --- */
+.diagram { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; margin-block-end: 0.75rem; }
+.diagram svg { display: block; max-inline-size: 100%; height: auto; }
+.diagram figcaption { font-size: 0.78rem; color: var(--text-soft); margin-block-start: 0.4rem; }
+
+/* --- Speech status --- */
+.speech-hint { font-size: 0.78rem; color: var(--text-soft); }
+
+/* --- Compare page --- */
+.compare-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.compare-table th, .compare-table td { border: 1px solid var(--border); padding: 0.5rem 0.7rem; text-align: start; vertical-align: top; }
+.compare-table th { background: var(--surface-2); }
+
+/* --- Progress bars --- */
+.progress-bar { background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; block-size: 0.5rem; }
+.progress-bar > span { display: block; block-size: 100%; background: var(--accent); }
+.stat-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+.stat { padding: 0.9rem; }
+.stat .num { font-size: 1.4rem; font-weight: 700; }
+.stat .label { font-size: 0.8rem; color: var(--text-soft); }
+
+/* --- Settings --- */
+.setting-group { margin-block-end: 1.25rem; }
+.setting-group h2 { margin-block-start: 0; }
+.radio-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.radio-row label {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.75rem; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); cursor: pointer; font-size: 0.88rem;
+}
+.radio-row input { accent-color: var(--accent); }
+
+.voice-list { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.5rem; }
+.voice-list li { padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); font-size: 0.85rem; }
+
+/* --- Paths --- */
+.path-card { display: flex; flex-direction: column; gap: 0.5rem; }
+.path-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+.path-steps li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+.step-dot { inline-size: 0.55rem; block-size: 0.55rem; border-radius: 999px; background: var(--border); flex: none; }
+.step-dot.done { background: var(--ok); }
+.step-dot.current { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* --- Responsive --- */
+@media (max-width: 767px) {
+  .nav { padding: 0.5rem 0.75rem; }
+  .nav-links { inline-size: 100%; overflow-x: auto; flex-wrap: nowrap; padding-block-end: 0.25rem; }
+  .nav-links a { white-space: nowrap; }
+  .brand-name { display: none; }
+  .content { padding: 1rem 0.75rem 2.5rem; }
+  .term-header { flex-direction: column; align-items: flex-start; }
+  .term-actions { margin-inline-start: 0; }
+}
+
+@media (min-width: 1024px) {
+  .content { max-inline-size: 72rem; }
+}

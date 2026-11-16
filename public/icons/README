@@ -1,0 +1,19 @@
+PWA icon note
+=============
+
+The app icon source is icon.svg in this folder.
+
+vite-plugin-pwa requires PNG icons at 192x192 and 512x512 referenced from the
+generated manifest (see vite.config.ts). This build ships icon.svg as the
+source asset; before publishing to a host that requires strict PWA
+installability, convert it once to PNG:
+
+  # with ImageMagick
+  magick icon.svg -resize 192x192 icon-192.png
+  magick icon.svg -resize 512x512 icon-512.png
+
+and place icon-192.png / icon-512.png in public/icons/.
+
+Verification status: manifest generation is configured and expected from
+`npm run build`; PNG conversion and real-device install were NOT verified in
+this environment (no local shell available). See DEVELOPMENT_STATUS.md.
