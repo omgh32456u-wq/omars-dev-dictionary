@@ -1,0 +1,37 @@
+{
+  "name": "omars-dev-dictionary",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Omar's Dev Dictionary — a premium educational programming dictionary and learning platform by Omar Mohamed.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^20.14.15",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.5.0",
+    "vite": "^5.4.3",
+    "vite-plugin-pwa": "^0.20.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
